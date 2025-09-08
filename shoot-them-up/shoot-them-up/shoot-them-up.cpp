@@ -4,7 +4,21 @@
 #include "framework.h"
 #include "shoot-them-up.h"
 
+#include "manager.hpp"
+#include "timer.hpp"
+
+#include <iostream>
+#include <windows.h>
+#include <chrono>
+#include <SFML/Graphics.hpp>
+
+
 #define MAX_LOADSTRING 100
+
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 // Variables globales :
 HINSTANCE hInst;                                // instance actuelle
@@ -17,6 +31,8 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+Manager gameManager;
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -26,6 +42,25 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Placez le code ici.
+    sf::RenderWindow window(sf::VideoMode({ 800, 800 }), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
+    Timer clock;
+    Manager gameManager;
+
+    while (window.isOpen())
+    {
+        int deltaTime = clock.GetDeltaTime();
+
+        if (true)
+        {
+
+        }
+
+        window.clear();
+        window.draw(shape);
+        window.display();
+    }
 
     // Initialise les chaînes globales
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -55,6 +90,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
+void Update() {
+
+}
+
+void Draw() {
+    
+}
 
 
 //
