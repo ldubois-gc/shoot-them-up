@@ -6,7 +6,7 @@ public:
 	Timer();
 	~Timer();
 
-	int GetDeltaTime();
+	float GetDeltaTime();
 
 private:
 	DWORD startTime;

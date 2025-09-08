@@ -1,10 +1,14 @@
 #include "framework.h"
 #include "event_handler.hpp"
 
-int EventHandler::PressedKey() {
-	for (int keyCode = 0; keyCode < 256; keyCode++) {
-		if (GetAsyncKeyState(keyCode)) {
-			return keyCode;
-		}
-	}
+EventHandler::EventHandler() {
+
+}
+
+EventHandler::~EventHandler() {
+
+}
+
+bool EventHandler::IsKeyDown(int keyCode) {
+	return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
 }

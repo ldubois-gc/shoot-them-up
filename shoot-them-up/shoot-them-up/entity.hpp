@@ -1,6 +1,6 @@
 #pragma once
 
-class Sprite;
+// class Sprite;
 
 class Entity
 {
@@ -13,8 +13,10 @@ public:
 	float GetX() { return xPos; }
 	float GetY() { return yPos; }
 
-private:
+	void Draw(sf::RenderWindow &window);
+
+protected:
 	float xPos;
 	float yPos;
-	Sprite render;
+	sf::RectangleShape render;
 };

@@ -8,7 +8,7 @@ public:
 	Actor();
 	virtual ~Actor();
 
-	float Move(float x, float y);
+	void Move(float x, float y);
 
 private:
 	float healthPoints;

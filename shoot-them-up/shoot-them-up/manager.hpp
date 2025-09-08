@@ -11,13 +11,3 @@ public:
 private:
 	std::vector<Entity*> entities;
 };
-
-Manager::Manager()
-{
-}
-
-Manager::~Manager()
-{
-}
-
-extern float gameClock;

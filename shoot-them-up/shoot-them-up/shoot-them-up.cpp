@@ -6,6 +6,8 @@
 
 #include "manager.hpp"
 #include "timer.hpp"
+#include "event_handler.hpp"
+#include "actor.hpp"
 
 #include <iostream>
 #include <windows.h>
@@ -43,22 +45,44 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: Placez le code ici.
     sf::RenderWindow window(sf::VideoMode({ 800, 800 }), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    window.setFramerateLimit(60);
+    // sf::CircleShape shape(10.f);
+    //shape.setFillColor(sf::Color::Green);
     Timer clock;
     Manager gameManager;
+    EventHandler input;
+    Actor player;
 
     while (window.isOpen())
     {
-        int deltaTime = clock.GetDeltaTime();
+        float deltaTime = clock.GetDeltaTime();
 
-        if (true)
+        while (const std::optional event = window.pollEvent())
         {
-
+            if (event->is<sf::Event::Closed>())
+                window.close();
+            if (input.IsKeyDown(VK_UP))
+            {
+                player.Move(0.0f, -0.0001f * deltaTime);
+            }
+            if (input.IsKeyDown(VK_DOWN))
+            {
+                player.Move(0.0f, 0.0001f * deltaTime);
+            }
+            if (input.IsKeyDown(VK_RIGHT))
+            {
+                player.Move(0.0001f * deltaTime, 0.0f);
+            }
+            if (input.IsKeyDown(VK_LEFT))
+            {
+                player.Move(-0.0001f * deltaTime, 0.0f);
+            }
         }
 
+
         window.clear();
-        window.draw(shape);
+        player.Draw(window);
+        // window.draw();
         window.display();
     }
 
@@ -91,7 +115,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 }
 
 void Update() {
+    if (true)
+    {
 
+    }
 }
 
 void Draw() {

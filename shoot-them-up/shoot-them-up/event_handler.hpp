@@ -6,7 +6,7 @@ public:
 	EventHandler();
 	~EventHandler();
 
-	int PressedKey();
+	bool IsKeyDown(int keyCode);
 
 private:
 

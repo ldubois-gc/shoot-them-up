@@ -8,9 +8,3 @@ Renderer::Renderer() {
 Renderer::~Renderer() {
 
 }
-
-void Renderer::Render(std::vector<Entity> entities) {
-	for (Entity entity : entities) {
-		entity.
-	}
-}

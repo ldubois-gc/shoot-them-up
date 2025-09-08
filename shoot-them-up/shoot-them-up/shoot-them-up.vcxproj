@@ -130,13 +130,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="actor.hpp" />
+    <ClInclude Include="entity.hpp" />
+    <ClInclude Include="event_handler.hpp" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="manager.hpp" />
+    <ClInclude Include="player.hpp" />
+    <ClInclude Include="renderer.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="shoot-them-up.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="timer.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="actor.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="event_handler.cpp" />
+    <ClCompile Include="manager.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shoot-them-up.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="shoot-them-up.rc" />

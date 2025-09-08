@@ -7,7 +7,7 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	void Render(std::vector<Entity*> entities);
+	//void Render(std::vector<Entity*> entities);
 
 private:
 
