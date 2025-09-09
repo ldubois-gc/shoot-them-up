@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "actor.hpp"
 
-Actor::Actor() {
+Actor::Actor(float x, float y, sf::Color color, float actorSpeed) : Entity(x, y, color) {
 	healthPoints = 20.f;
-	speed = 20.f;
+	speed = actorSpeed;
 }
 
 Actor::~Actor() {

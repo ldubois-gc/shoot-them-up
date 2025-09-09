@@ -5,7 +5,7 @@
 class Actor : public Entity
 {
 public:
-	Actor();
+	Actor(float x, float y, sf::Color color, float actorSpeed = 20.f);
 	virtual ~Actor();
 
 	void Move(float x, float y);
