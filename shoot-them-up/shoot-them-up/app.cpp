@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "app.hpp"
 #include "entity.hpp"
-#include "actor.hpp"
+#include "player.hpp"
 
 App::App() {
 	
@@ -20,7 +20,7 @@ int App::Init() {
 }
 
 int App::Runtime() {
-	Actor player;
+	Player player = Player(&input);
 	gameManager.AddEntity(player);
 
 	while (window->isOpen()) {

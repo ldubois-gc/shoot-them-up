@@ -19,5 +19,6 @@ public:
 protected:
 	float xPos;
 	float yPos;
+	bool isAlive;
 	sf::RectangleShape render;
 };

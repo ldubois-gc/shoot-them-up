@@ -3,7 +3,7 @@
 
 Actor::Actor() {
 	healthPoints = 20.f;
-	speed = 300.f;
+	speed = 20.f;
 }
 
 Actor::~Actor() {
