@@ -19,6 +19,6 @@ public:
 protected:
 	float xPos;
 	float yPos;
-	bool isAlive;
+	bool exists;
 	sf::RectangleShape render;
 };
