@@ -9,7 +9,10 @@ public:
 	virtual ~Actor();
 
 	void Move(float x, float y);
+	
+	void Update(float& dt) override;
 
-private:
+protected:
 	float healthPoints;
+	float speed;
 };

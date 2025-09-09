@@ -6,8 +6,12 @@ public:
 	Timer();
 	~Timer();
 
-	float GetDeltaTime();
+	float GetDeltaTime() { return deltaTime; }
+	float GetTotalTime() { return totalTime; }
+	void UpdateClock();
 
 private:
-	DWORD startTime;
+	float totalTime;
+	float deltaTime;
+	DWORD lastFrameTime;
 };

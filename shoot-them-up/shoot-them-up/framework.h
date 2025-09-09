@@ -8,6 +8,8 @@
 #define WIN32_LEAN_AND_MEAN             // Exclure les en-têtes Windows rarement utilisés
 // Fichier d'en-tête commun
 #include <vector>
+#include <string>
+#include <iostream>
 // Fichiers d'en-tête Graphique
 #include <SFML/Graphics.hpp>
 // Fichiers d'en-tête Windows

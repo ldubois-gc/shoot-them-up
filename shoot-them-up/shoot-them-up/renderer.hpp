@@ -9,6 +9,8 @@ public:
 	~Renderer();
 	//void Render(std::vector<Entity*> entities);
 
+	void UpdateRenderer();
+
 private:
 
 };

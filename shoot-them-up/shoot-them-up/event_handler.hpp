@@ -7,7 +7,8 @@ public:
 	~EventHandler();
 
 	bool IsKeyDown(int keyCode);
+	void UpdateEvents();
 
 private:
-
+	bool keys[255];
 };

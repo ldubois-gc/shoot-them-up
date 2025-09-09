@@ -14,6 +14,7 @@ public:
 	float GetY() { return yPos; }
 
 	void Draw(sf::RenderWindow &window);
+	virtual void Update(float& dt) = 0;
 
 protected:
 	float xPos;

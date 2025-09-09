@@ -1,14 +1,21 @@
 #include "framework.h"
 #include "timer.hpp"
 
-Timer::Timer() {
-
+Timer::Timer() {;
+	lastFrameTime = timeGetTime();
+	totalTime = 0.0f;
+	deltaTime = 0.0f;
 }
 
 Timer::~Timer() {
 
 }
 
-float Timer::GetDeltaTime() {
-	return static_cast<float>((timeGetTime() - startTime) * 0.0001);
+void Timer::UpdateClock() {
+	DWORD currentTime = timeGetTime();
+	DWORD elapsedTime = currentTime - lastFrameTime;
+	lastFrameTime = currentTime;
+
+	deltaTime = elapsedTime * 0.001f;
+	totalTime += deltaTime;
 }

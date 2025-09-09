@@ -16,3 +16,7 @@ Entity::~Entity() {
 void Entity::Draw(sf::RenderWindow &window) {
 	window.draw(render);
 }
+
+void Entity::Update(float& dt) {
+
+}

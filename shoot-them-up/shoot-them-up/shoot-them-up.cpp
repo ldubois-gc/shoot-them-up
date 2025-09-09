@@ -4,9 +4,7 @@
 #include "framework.h"
 #include "shoot-them-up.h"
 
-#include "manager.hpp"
-#include "timer.hpp"
-#include "event_handler.hpp"
+#include "app.hpp"
 #include "actor.hpp"
 
 #include <iostream>
@@ -33,7 +31,6 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-Manager gameManager;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -44,47 +41,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Placez le code ici.
-    sf::RenderWindow window(sf::VideoMode({ 800, 800 }), "SFML works!");
-    window.setFramerateLimit(60);
+    /*sf::RenderWindow window(sf::VideoMode({ 800, 800 }), "SFML works!");
+    window.setFramerateLimit(60);*/
     // sf::CircleShape shape(10.f);
     //shape.setFillColor(sf::Color::Green);
-    Timer clock;
-    Manager gameManager;
-    EventHandler input;
-    Actor player;
+    App game;
 
-    while (window.isOpen())
-    {
-        float deltaTime = clock.GetDeltaTime();
-
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
-            if (input.IsKeyDown(VK_UP))
-            {
-                player.Move(0.0f, -0.0001f * deltaTime);
-            }
-            if (input.IsKeyDown(VK_DOWN))
-            {
-                player.Move(0.0f, 0.0001f * deltaTime);
-            }
-            if (input.IsKeyDown(VK_RIGHT))
-            {
-                player.Move(0.0001f * deltaTime, 0.0f);
-            }
-            if (input.IsKeyDown(VK_LEFT))
-            {
-                player.Move(-0.0001f * deltaTime, 0.0f);
-            }
-        }
-
-
-        window.clear();
-        player.Draw(window);
-        // window.draw();
-        window.display();
-    }
+    game.Init();
+    game.Runtime();
 
     // Initialise les chaînes globales
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -113,18 +77,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     return (int) msg.wParam;
 }
-
-void Update() {
-    if (true)
-    {
-
-    }
-}
-
-void Draw() {
-    
-}
-
 
 //
 //  FONCTION : MyRegisterClass()

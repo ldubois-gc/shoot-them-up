@@ -2,7 +2,8 @@
 #include "actor.hpp"
 
 Actor::Actor() {
-
+	healthPoints = 20.f;
+	speed = 300.f;
 }
 
 Actor::~Actor() {
@@ -10,7 +11,11 @@ Actor::~Actor() {
 }
 
 void Actor::Move(float x, float y) {
-	xPos += x;
-	yPos += y;
+	xPos += speed * x;
+	yPos += speed * y;
 	render.setPosition(sf::Vector2f(xPos, yPos));
+}
+
+void Actor::Update(float& dt) {
+
 }
