@@ -1,34 +1,28 @@
 #include "framework.h"
 #include "enemy.hpp"
+#include "player.hpp"
 
-Enemy::Enemy(float x, float y, sf::Color color, float actorSpeed) : Actor(x, y, color, actorSpeed)
+#include <cmath>
+
+Enemy::Enemy(float x, float y, sf::Color color, Player* gamePlayer, float actorSpeed) : Character(x, y, color, actorSpeed)
 {
+    player = gamePlayer;
 }
 
 Enemy::~Enemy()
 {
 }
 
-
 void Enemy::Update(float& dt) {
-    if (xPos != 750.f) {
-        Move(speed * dt, 0.0f);
-    }
+    float distanceWithPlayerX = player->GetX() - xPos;
+    float distanceWithPlayerY = player->GetY() - yPos;
 
-    /*if (playerInput->IsKeyDown(VK_UP))
-    {
-        Move(0.0f, -speed * dt);
-    }
-    if (playerInput->IsKeyDown(VK_DOWN))
-    {
-        Move(0.0f, speed * dt);
-    }
-    if (playerInput->IsKeyDown(VK_RIGHT))
-    {
-        Move(speed * dt, 0.0f);
-    }
-    if (playerInput->IsKeyDown(VK_LEFT))
-    {
-        Move(-speed * dt, 0.0f);
-    }*/
+    // 1. Norme
+    float norme = sqrt(pow(distanceWithPlayerX, 2) + pow(distanceWithPlayerY, 2));
+
+    // 2. Normalisation
+    float normeX = distanceWithPlayerX / norme;
+    float normeY = distanceWithPlayerY / norme;
+
+    Move(normeX * speed * dt, normeY * speed * dt);
 }

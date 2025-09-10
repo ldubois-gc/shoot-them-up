@@ -2,7 +2,7 @@
 #include "player.hpp"
 #include "event_handler.hpp"
 
-Player::Player(EventHandler* inputManager, float x, float y, sf::Color color, float actorSpeed) : Actor(x, y, color, actorSpeed) {
+Player::Player(EventHandler* inputManager, float x, float y, sf::Color color, float actorSpeed) : Character(x, y, color, actorSpeed) {
     playerInput = inputManager;
 }
 

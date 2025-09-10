@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="actor.hpp" />
     <ClInclude Include="app.hpp" />
+    <ClInclude Include="character.hpp" />
     <ClInclude Include="enemy.hpp" />
     <ClInclude Include="entity.hpp" />
     <ClInclude Include="event_handler.hpp" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
     <ClCompile Include="app.cpp" />
+    <ClCompile Include="character.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="event_handler.cpp" />

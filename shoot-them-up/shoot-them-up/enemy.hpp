@@ -1,15 +1,17 @@
 #pragma once
 
-#include "actor.hpp"
+#include "character.hpp"
 
-class Enemy : public Actor
+class Player;
+
+class Enemy : public Character
 {
 public:
-	Enemy(float x, float y, sf::Color color, float actorSpeed = 10.f);
+	Enemy(float x, float y, sf::Color color, Player* gamePlayer, float actorSpeed = 100.f);
 	virtual ~Enemy();
 
 	void Update(float& dt) override;
 
 private:
-
+	Player* player;
 };

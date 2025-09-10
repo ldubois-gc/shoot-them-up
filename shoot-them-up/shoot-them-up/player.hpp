@@ -1,13 +1,13 @@
 #pragma once
 
-#include "actor.hpp"
+#include "character.hpp"
 
 class EventHandler;
 
-class Player : public Actor
+class Player : public Character
 {
 public:
-	Player(EventHandler* inputManager, float x, float y, sf::Color color, float actorSpeed = 20.f);
+	Player(EventHandler* inputManager, float x, float y, sf::Color color, float actorSpeed = 150.f);
 	virtual ~Player();
 
 	void Update(float& dt) override;

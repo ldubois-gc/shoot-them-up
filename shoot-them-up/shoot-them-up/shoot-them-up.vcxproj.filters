@@ -51,6 +51,12 @@
     <ClInclude Include="app.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="character.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shoot-them-up.cpp">
@@ -78,6 +84,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="app.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

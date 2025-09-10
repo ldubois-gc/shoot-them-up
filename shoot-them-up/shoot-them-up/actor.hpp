@@ -13,6 +13,5 @@ public:
 	void Update(float& dt) override;
 
 protected:
-	float healthPoints;
 	float speed;
 };
