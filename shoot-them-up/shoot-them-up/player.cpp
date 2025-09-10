@@ -4,7 +4,7 @@
 #include "projectile.hpp"
 #include "event_handler.hpp"
 
-Player::Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f) : : Character(x, y, heigth, width, color, actorSpeed), movement(), hasBeenHit(), stateMachine(*this) {
+Player::Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f) : Character(x, y, heigth, width, color, manager, actorSpeed), movement(), hasBeenHit(), stateMachine(*this) {
     playerInput = inputManager;
     xAim = 0.f;
     yAim = -1.f;
@@ -36,7 +36,7 @@ void Player::Update(float& dt) {
 }
 
 void Player::Shoot() {
-    Projectile* bullet = new Projectile(xPos, yPos, xAim, yAim, sf::Color::Blue, gameManager, 500.f);
+    Projectile* bullet = new Projectile(xPos, yPos, 5.f, 5.f, xAim, yAim, sf::Color::Blue, gameManager, 500.f);
     gameManager->AddEntity(bullet);
 }
 

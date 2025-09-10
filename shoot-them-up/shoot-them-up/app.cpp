@@ -25,9 +25,9 @@ int App::Init() {
 
 int App::Runtime() {
 	Player* player = new Player(&input, 500.f, 500.f, 20.f, 20.f, sf::Color::Green, &gameManager, 200.f);
-	Enemy enemy1(50.f, 50.f, 10.f, 10.f, sf::Color::Red, &player);
-	Enemy enemy2(200.f, 50.f, 10.f, 10.f, sf::Color::Red, &player);
-	Obstacle obstacle(100.f, 200.f, 20.f, 20.f, sf::Color::White);
+	Enemy* enemy1 = new Enemy(50.f, 50.f, 10.f, 10.f, sf::Color::Red, &gameManager, player);
+	Enemy* enemy2 = new Enemy(200.f, 50.f, 10.f, 10.f, sf::Color::Red, &gameManager, player);
+	Obstacle* obstacle = new Obstacle(100.f, 200.f, 20.f, 20.f, sf::Color::White);
 	gameManager.AddEntity(player);
 	gameManager.AddEntity(enemy1);
 	gameManager.AddEntity(enemy2);

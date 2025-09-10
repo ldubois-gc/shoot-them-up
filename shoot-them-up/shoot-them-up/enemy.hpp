@@ -7,7 +7,7 @@ class Player;
 class Enemy : public Character
 {
 public:
-	Enemy(float x, float y, float heigth, float width, sf::Color color, Player* gamePlayer, float actorSpeed = 100.f);
+	Enemy(float x, float y, float heigth, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed = 100.f);
 	virtual ~Enemy();
 
 	void Update(float& dt) override;

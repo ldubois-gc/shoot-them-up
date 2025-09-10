@@ -4,7 +4,6 @@
 
 Actor::Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed) : Entity(x, y, heigth, width, color) {
 	speed = actorSpeed;
-	gameManager = manager;
 }
 
 Actor::~Actor() {

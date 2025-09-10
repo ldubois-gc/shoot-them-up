@@ -6,8 +6,7 @@
 class Actor : public Entity
 {
 public:
-	Actor(float x, float y, sf::Color color, Manager* manager, float actorSpeed);
-	Actor(float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f);
+	Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 20.f);
 	virtual ~Actor();
 
 	float GetSpeed() { return speed; }
@@ -19,5 +18,5 @@ public:
 protected:
 	float healthPoints;
 	float speed;
-	Manager* gameManager;
+	//Manager* gameManager;
 };
