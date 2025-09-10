@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <cmath>
 // Fichiers d'en-tête Graphique
 #include <SFML/Graphics.hpp>
 // Fichiers d'en-tête Windows

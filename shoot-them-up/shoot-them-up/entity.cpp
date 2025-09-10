@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "entity.hpp"
 
-Entity::Entity(float x, float y, sf::Color color) {
+Entity::Entity(float x, float y, float heigth, float width, sf::Color color) {
 	xPos = x;
 	yPos = y;
 	exists = true;
-	render.setSize(sf::Vector2f(10.0f, 10.0f));
+	render.setSize(sf::Vector2f(heigth, width));
 	render.setPosition(sf::Vector2f(xPos, yPos));
 	render.setFillColor(color);
 }
@@ -20,4 +20,18 @@ void Entity::Draw(sf::RenderWindow &window) {
 
 void Entity::Update(float& dt) {
 
+}
+
+sf::Vector2f Entity::GetDirectionToPoint(float xPoint, float yPoint) {
+	float xDistancePoint = xPoint - xPos;
+	float yDistancePoint = yPoint - yPos;
+
+	// 1. Norme
+	float norm = sqrt(pow(xDistancePoint, 2) + pow(yDistancePoint, 2));
+
+	// 2. Normalisation
+	float distanceX = xDistancePoint / norm;
+	float distanceY = yDistancePoint / norm;
+
+	return sf::Vector2f(distanceX, distanceY);
 }

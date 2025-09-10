@@ -5,7 +5,7 @@
 class Character : public Actor
 {
 public:
-	Character(float x, float y, sf::Color color, float actorSpeed = 20.f);
+	Character(float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 20.f);
 	virtual ~Character();
 
 protected:

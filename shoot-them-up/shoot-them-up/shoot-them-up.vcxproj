@@ -138,6 +138,7 @@
     <ClInclude Include="event_handler.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="manager.hpp" />
+    <ClInclude Include="obstacle.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="renderer.hpp" />
     <ClInclude Include="Resource.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="event_handler.cpp" />
     <ClCompile Include="manager.cpp" />
+    <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shoot-them-up.cpp" />
