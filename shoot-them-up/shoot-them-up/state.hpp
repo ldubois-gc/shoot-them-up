@@ -12,20 +12,23 @@ public:
 template <typename EntityType>
 class StateMachine {
 public:
-    void ChangeState(State<EntityType>* newState, EntityType& entity) {
+    StateMachine(EntityType& newOwner) : owner(newOwner) {}
+
+    void ChangeState(State<EntityType>* newState) {
         if (state) {
-            state->Exit(entity);
+            state->Exit(owner);
         }
-        state = *newState;
+        state = newState;
         if (state) {
-            state->Enter(entity);
+            state->Enter(owner);
         }
     }
 
-    void Update(EntityType& entity, float dt) {
-        if (state) state->Update(entity, dt);
+    void Update(float dt) {
+        if (state) state->Update(owner, dt);
     }
 
 private:
+    EntityType& owner;
     State<EntityType>* state;
 };
