@@ -12,6 +12,9 @@ public:
 	void SetY(float y) { yPos = y; }
 	float GetX() { return xPos; }
 	float GetY() { return yPos; }
+	
+	void Kill();
+	bool Exists();
 
 	void Draw(sf::RenderWindow &window);
 	virtual void Update(float& dt) = 0;

@@ -55,6 +55,7 @@ void App::Update() {
 	for (Entity* entity : gameManager.GetEntities()) {
 		entity->Update(deltaTime);
 	}
+	gameManager.UpdateManager();
 }
 
 void App::Render() {

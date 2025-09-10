@@ -11,7 +11,7 @@ Player::~Player() {
 }
 
 void Player::Update(float& dt) {
-    if (playerInput->IsKeyDown(VK_UP))
+    if (playerInput->IsKeyDown(VK_UP)) // || playerInput->IsKeyDown(87) || playerInput->IsKeyDown(90)
     {
         Move(0.0f, -speed * dt);
     }
@@ -27,4 +27,8 @@ void Player::Update(float& dt) {
     {
         Move(-speed * dt, 0.0f);
     }
+}
+
+void Player::Shoot(float& xDir, float& yDir) {
+
 }

@@ -35,3 +35,11 @@ sf::Vector2f Entity::GetDirectionToPoint(float xPoint, float yPoint) {
 
 	return sf::Vector2f(distanceX, distanceY);
 }
+
+void Entity::Kill() {
+	exists = false;
+}
+
+bool Entity::Exists() {
+	return exists;
+}
