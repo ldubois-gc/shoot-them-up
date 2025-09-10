@@ -2,6 +2,7 @@
 #include "app.hpp"
 #include "entity.hpp"
 #include "player.hpp"
+#include "enemy.hpp"
 
 App::App() {
 	
@@ -20,8 +21,12 @@ int App::Init() {
 }
 
 int App::Runtime() {
-	Player player = Player(&input);
+	Player player = Player(&input, 500.f, 500.f, sf::Color::Green);
+	Enemy enemy1 = Enemy(50.f, 50.f, sf::Color::Red, &player);
+	Enemy enemy2 = Enemy(200.f, 50.f, sf::Color::Red, &player);
 	gameManager.AddEntity(player);
+	gameManager.AddEntity(enemy1);
+	gameManager.AddEntity(enemy2);
 
 	while (window->isOpen()) {
 		while (const std::optional event = window->pollEvent())

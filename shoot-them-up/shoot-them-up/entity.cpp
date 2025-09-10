@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "entity.hpp"
 
-Entity::Entity() {
-	xPos = 500.0f;
-	yPos = 500.0f;
-	isAlive = true;
+Entity::Entity(float x, float y, sf::Color color) {
+	xPos = x;
+	yPos = y;
+	exists = true;
 	render.setSize(sf::Vector2f(10.0f, 10.0f));
 	render.setPosition(sf::Vector2f(xPos, yPos));
-	render.setFillColor(sf::Color::Green);
+	render.setFillColor(color);
 }
 
 Entity::~Entity() {

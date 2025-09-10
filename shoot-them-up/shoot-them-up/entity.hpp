@@ -5,7 +5,7 @@
 class Entity
 {
 public:
-	Entity();
+	Entity(float x, float y, sf::Color color);
 	virtual ~Entity();
 
 	void SetX(float x) { xPos = x; }
