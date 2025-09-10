@@ -5,7 +5,7 @@
 class Entity
 {
 public:
-	Entity(float x, float y, sf::Color color);
+	Entity(float x, float y, float heigth, float width, sf::Color color);
 	virtual ~Entity();
 
 	void SetX(float x) { xPos = x; }
@@ -21,4 +21,6 @@ protected:
 	float yPos;
 	bool exists;
 	sf::RectangleShape render;
+
+	sf::Vector2f GetDirectionToPoint(float xPoint, float yPoint);
 };

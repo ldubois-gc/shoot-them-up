@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "actor.hpp"
 
-Actor::Actor(float x, float y, sf::Color color, float actorSpeed) : Entity(x, y, color) {
+Actor::Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed) : Entity(x, y, heigth, width, color) {
 	speed = actorSpeed;
 }
 

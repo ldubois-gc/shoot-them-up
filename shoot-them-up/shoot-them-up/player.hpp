@@ -7,7 +7,7 @@ class EventHandler;
 class Player : public Character
 {
 public:
-	Player(EventHandler* inputManager, float x, float y, sf::Color color, float actorSpeed = 150.f);
+	Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 150.f);
 	virtual ~Player();
 
 	void Update(float& dt) override;

@@ -3,6 +3,7 @@
 #include "entity.hpp"
 #include "player.hpp"
 #include "enemy.hpp"
+#include "obstacle.hpp"
 
 App::App() {
 	
@@ -21,12 +22,14 @@ int App::Init() {
 }
 
 int App::Runtime() {
-	Player player = Player(&input, 500.f, 500.f, sf::Color::Green);
-	Enemy enemy1 = Enemy(50.f, 50.f, sf::Color::Red, &player);
-	Enemy enemy2 = Enemy(200.f, 50.f, sf::Color::Red, &player);
+	Player player(&input, 500.f, 500.f, 10.f, 10.f, sf::Color::Green);
+	Enemy enemy1(50.f, 50.f, 10.f, 10.f, sf::Color::Red, &player);
+	Enemy enemy2(200.f, 50.f, 10.f, 10.f, sf::Color::Red, &player);
+	Obstacle obstacle(100.f, 200.f, 20.f, 20.f, sf::Color::White);
 	gameManager.AddEntity(player);
 	gameManager.AddEntity(enemy1);
 	gameManager.AddEntity(enemy2);
+	gameManager.AddEntity(obstacle);
 
 	while (window->isOpen()) {
 		while (const std::optional event = window->pollEvent())
