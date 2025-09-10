@@ -134,12 +134,15 @@
     <ClInclude Include="app.hpp" />
     <ClInclude Include="character.hpp" />
     <ClInclude Include="enemy.hpp" />
+    <ClInclude Include="projectile.hpp" />
+    <ClInclude Include="state.hpp" />
     <ClInclude Include="entity.hpp" />
     <ClInclude Include="event_handler.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="manager.hpp" />
     <ClInclude Include="obstacle.hpp" />
     <ClInclude Include="player.hpp" />
+    <ClInclude Include="player_state.hpp" />
     <ClInclude Include="renderer.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="shoot-them-up.h" />
@@ -156,8 +159,12 @@
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="projectile.cpp" />
+    <ClCompile Include="projectile_state.cpp" />
+    <ClCompile Include="projectile_state.hpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shoot-them-up.cpp" />
+    <ClCompile Include="state.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>

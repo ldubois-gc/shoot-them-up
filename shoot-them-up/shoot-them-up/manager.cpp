@@ -16,8 +16,8 @@ void Manager::UpdateManager() {
 	newEntities.clear();
 }
 
-void Manager::AddEntity(Entity& newEntity) {
-	entities.push_back(&newEntity);
+void Manager::AddEntity(Entity* newEntity) {
+	newEntities.push_back(newEntity);
 }
 
 void Manager::RemoveFlaggedEntities() {
@@ -25,7 +25,7 @@ void Manager::RemoveFlaggedEntities() {
 		std::remove_if(
 			entities.begin(), 
 			entities.end(), 
-			[](Entity& e) { return !e.Exists(); }), 
+			[](Entity* e) { return !e->Exists(); }), 
 		entities.end()
 	);
 }

@@ -5,7 +5,7 @@
 class Projectile : public Actor
 {
 public:
-	Projectile();
+	Projectile(float x, float y, float xDir, float yDir, sf::Color color, Manager* manager, float actorSpeed = 20.f);
 	~Projectile();
 
 	void Update(float &dt) override;
