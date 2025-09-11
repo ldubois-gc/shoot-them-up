@@ -25,10 +25,11 @@ public:
 		return obj;
 	}*/
 
-	void ProcessCollision();
+	void ProcessCollision(Entity* entity);
+	bool CheckCollision(Entity* a, Entity* b);
 
 private:
 	std::vector<Entity*> newEntities;
 	std::vector<Entity*> entities;
-	void ResetAllColisions();
+	void ResetAllCollisions();
 };

@@ -8,29 +8,38 @@ Manager::Manager() {}
 
 Manager::~Manager() {}
 
-void Manager::ProcessCollision() {
-    ResetAllColisions();
+void Manager::ProcessCollision(Entity* entity) {
+    ResetAllCollisions();
 
-    for (Entity* entity : entities) {
-        
-    }
-
-    /*this.position.x < other.position.x + other.width &&
-    this.position.x + this.width > other.position.x&&
-    this.position.y < other.position.y + other.height &&
-    this.position.y + this.height > other.position.y*/
-}
-
-void Manager::ResetAllColisions() {
-    for (Entity* entity : entities) {
-        if (Actor* actor = dynamic_cast<Actor*>(entity)) {
-            actor->colideUp = false;
-            actor->colideRigth = false;
-            actor->colideDown = false;
-            actor->colideLeft = false;
+	for (Entity* otherEntity : entities) {
+		if (entity != otherEntity && CheckCollision(entity, otherEntity)) {
+			entity->OnCollision(otherEntity);
+			otherEntity->OnCollision(entity);
+		}
+	}
+    /*for (Entity* entity : entities) {
+        for (Entity* otherEntity : entities) {
+            if (entity != otherEntity && CheckCollision(entity, otherEntity)) {
+				entity->OnCollision();
+				otherEntity->OnCollision();
+            }
         }
+    }*/
+}
+
+bool Manager::CheckCollision(Entity* a, Entity* b) {
+	return  a->GetX() < b->GetX() + b->GetWidth() &&
+			a->GetX() + a->GetWidth() > b->GetX() &&
+			a->GetY() < b->GetY() + b->GetHeigth() &&
+			a->GetY() + a->GetHeigth() > b->GetY();
+}
+
+void Manager::ResetAllCollisions() {
+    for (Entity* entity : entities) {
+        entity->collide = false;
     }
 }
+
 void Manager::UpdateManager() {
 	RemoveFlaggedEntities();
 	for (Entity* entity : newEntities) {

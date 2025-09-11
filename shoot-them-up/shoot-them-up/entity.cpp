@@ -7,15 +7,12 @@ Entity::Entity(float x, float y, float h, float w, sf::Color color) {
 	heigth = h;
 	width = w;
 	exists = true;
-	render.setSize(sf::Vector2f(heigth, width));
-	render.setPosition(sf::Vector2f(xPos, yPos));
-	render.setFillColor(color);
-	colideUp = false;
-	colideRigth = false;
-	colideDown = false;
-	colideLeft = false;
-	nextFrameXPos = 0;
-	nextFrameYPos = 0;
+	body.setSize(sf::Vector2f(heigth, width));
+	body.setPosition(sf::Vector2f(xPos, yPos));
+	body.setFillColor(color);
+
+	collide = false;
+
 	exists = true;
 }
 
@@ -24,10 +21,14 @@ Entity::~Entity() {
 }
 
 void Entity::Draw(sf::RenderWindow &window) {
-	window.draw(render);
+	window.draw(body);
 }
 
 void Entity::Update(float& dt) {
+
+}
+
+void Entity::OnCollision(Entity* collidedEntity) {
 
 }
 

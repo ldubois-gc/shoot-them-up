@@ -13,6 +13,8 @@ Player::Player(EventHandler* inputManager, float x, float y, float heigth, float
     bleepCooldown = 0.3f;
     bleepTimer = 0.3f;
     stateMachine.ChangeState(&movement);
+    correctionX = 0;
+    correctionY = 0;
 }
 
 Player::~Player() {
@@ -31,12 +33,17 @@ void Player::Update(float& dt) {
         shootTimer = 0.f;
     }
 
-    stateMachine.Update(dt);
-    
+    stateMachine.Update(dt);   
+}
+
+void Player::OnCollision(Entity* collidedEntity) {
+    if (collidedEntity->Type() == EntityType::OBSTACLE) {
+        PushBack(collidedEntity);
+    }
 }
 
 void Player::Shoot() {
-    Projectile* bullet = new Projectile(xPos, yPos, 5.f, 5.f, xAim, yAim, sf::Color::Blue, gameManager, 500.f);
+    Projectile* bullet = new Projectile(xPos, yPos, 5.f, 5.f, xAim, yAim, sf::Color::Blue, gameManager, this, 500.f);
     gameManager->AddEntity(bullet);
 }
 
@@ -61,16 +68,23 @@ void Player::Movement(float& dt) {
     {
         dirX -= 1.f;
     }
-    Move(dirX * currentSpeed * dt, dirY * currentSpeed * dt);
+
+    float xMove = dirX * currentSpeed * dt + correctionX;
+    float yMove = dirY * currentSpeed * dt + correctionY;
+
+    Move(xMove, yMove);
+
+    correctionX = 0;
+    correctionY = 0;
 }
 
 void Player::Invicibility(float& dt) {
     bleepTimer += dt;
     if (bleepTimer >= bleepCooldown) {
-        render.setFillColor(sf::Color::Transparent);
+        body.setFillColor(sf::Color::Transparent);
         if (bleepTimer >= bleepCooldown * 2)
         {
-            render.setFillColor(sf::Color::Green);
+            body.setFillColor(sf::Color::Green);
             bleepTimer = 0.0f;
         }
     }

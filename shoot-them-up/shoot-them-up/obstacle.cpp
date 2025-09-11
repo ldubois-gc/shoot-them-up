@@ -13,3 +13,9 @@ Obstacle::~Obstacle()
 void Obstacle::Update(float& dt) {
 	
 }
+
+void Obstacle::OnCollision(Entity* collidedEntity) {
+	if (collidedEntity->Type() == EntityType::ENEMY) {
+		body.setFillColor(sf::Color::Green);
+	}
+}

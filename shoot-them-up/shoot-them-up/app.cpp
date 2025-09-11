@@ -57,6 +57,7 @@ void App::Update() {
 
 	for (Entity* entity : gameManager.GetEntities()) {
 		entity->Update(deltaTime);
+		gameManager.ProcessCollision(entity);
 	}
 }
 

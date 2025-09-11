@@ -11,7 +11,22 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::OnCollision(Entity* collidedEntity) {
+    if (collidedEntity->Type() == EntityType::OBSTACLE || collidedEntity->Type() == EntityType::ENEMY) {
+        PushBack(collidedEntity);
+    }
+}
+
 void Enemy::Update(float& dt) {
     sf::Vector2f direction = GetDirectionToPoint(player->GetX(), player->GetY());
-    Move(direction.x * speed * dt, direction.y * speed * dt);
+
+    float currentSpeed = speed;
+
+    float xMove = direction.x * currentSpeed * dt + correctionX;
+    float yMove = direction.y * currentSpeed * dt + correctionY;
+
+    Move(xMove, yMove);
+
+    correctionX = 0;
+    correctionY = 0;
 }
