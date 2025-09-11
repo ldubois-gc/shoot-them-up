@@ -5,7 +5,7 @@
 class Entity
 {
 public:
-	Entity(float x, float y, float heigth, float width, sf::Color color);
+	Entity(float x, float y, float h, float w, sf::Color color);
 	virtual ~Entity();
 
 	void SetX(float x) { xPos = x; }
@@ -20,9 +20,15 @@ public:
 	void Draw(sf::RenderWindow &window);
 	virtual void Update(float& dt) = 0;
 
+	bool colideUp, colideRigth, colideDown, colideLeft;
+	float nextFrameXPos;
+	float nextFrameYPos;
+
 protected:
 	float xPos;
 	float yPos;
+	float heigth;
+	float width;
 	bool exists;
 	sf::RectangleShape render;
 
