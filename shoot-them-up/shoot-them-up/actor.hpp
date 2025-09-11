@@ -12,11 +12,17 @@ public:
 	float GetSpeed() { return speed; }
 
 	void Move(float x, float y);
+	void PushBack(Entity* otherEntity);
 	
+	virtual EntityType Type() override = 0;
+	void OnCollision(Entity* collidedEntity) override;
 	void Update(float& dt) override;
 
 protected:
 	float healthPoints;
 	float speed;
+
+	float correctionX;
+	float correctionY;
 	//Manager* gameManager;
 };

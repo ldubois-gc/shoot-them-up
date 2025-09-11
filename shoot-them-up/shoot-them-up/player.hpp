@@ -22,6 +22,8 @@ public:
 
 	void SetInvicibility(bool invicibility) { invicible = invicibility; };
 
+	EntityType Type() override { return EntityType::PLAYER; }
+	void OnCollision(Entity* collidedEntity) override;
 	using Actor::Update;
 	void Update(float& dt) override;
 

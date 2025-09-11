@@ -1,14 +1,11 @@
 //#pragma once
-
+//
 //#include "state.hpp"
 //#include "projectile.hpp"
 //
 //class ProjectileActive : public State<Projectile>
 //{
 //public:
-//	ProjectileActive();
-//	~ProjectileActive();
-//
-//private:
+//	void Update(Projectile& projectile, float dt) override;
 //
 //};
