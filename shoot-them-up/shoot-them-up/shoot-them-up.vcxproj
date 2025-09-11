@@ -134,6 +134,7 @@
     <ClInclude Include="app.hpp" />
     <ClInclude Include="character.hpp" />
     <ClInclude Include="enemy.hpp" />
+    <ClInclude Include="enemy_state.hpp" />
     <ClInclude Include="projectile.hpp" />
     <ClInclude Include="state.hpp" />
     <ClInclude Include="entity.hpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="app.cpp" />
     <ClCompile Include="character.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy_state.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="event_handler.cpp" />
     <ClCompile Include="manager.cpp" />

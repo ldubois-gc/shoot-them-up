@@ -67,13 +67,13 @@ void Manager::CreatePlayer(EventHandler* input, float xPos, float yPos) {
 
 void Manager::CreateEnemy(float xPos, float yPos, float speed) {
 	Enemy* enemy = new Enemy();
-	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Red, this, player, speed);
+	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Yellow, this, player, speed);
 	AddEntity(enemy);
 }
 
-void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir) {
+void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter) {
 	Projectile* bullet = new Projectile();
-	bullet->Init(xPos, yPos, 5.f, 5.f, xDir, yDir, sf::Color::Blue, this, player, 500.f);
+	bullet->Init(xPos, yPos, 8.f, 3.f, xDir, yDir, sf::Color::Blue, this, shooter, bulletSpeed);
 	AddEntity(bullet);
 }
 
@@ -81,4 +81,5 @@ void Manager::CreateObstacle(float xPos, float yPos, float height, float width) 
 	Obstacle* obstacle = new Obstacle();
 	obstacle->Init(xPos, yPos, width, height, sf::Color::White);
 	AddEntity(obstacle);
+	obstacles.push_back(obstacle);
 }

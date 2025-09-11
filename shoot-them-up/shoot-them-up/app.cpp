@@ -62,12 +62,11 @@ void App::Render() {
 }
 
 void App::Start() {
-	gameManager.CreatePlayer(&input, 500.f, 500.f);
-	gameManager.CreateEnemy(50.f, 50.f, 100.f);/*
-	gameManager.CreateEnemy(150.f, 50.f, 100.f);
-	gameManager.CreateEnemy(100.f, 50.f, 100.f);
-	gameManager.CreateObstacle(20.f, 200.f, 200.f, 20.f);
-	gameManager.CreateObstacle(200.f, 20.f, 20.f, 200.f);*/
+	gameManager.CreatePlayer(&input, 400.f, 400.f);
+	gameManager.CreateObstacle(-100.f, 0.f, 100.f, 800.f);
+	gameManager.CreateObstacle(0.f, -100.f, 800.f, 100.f);
+	gameManager.CreateObstacle(800.f, 0.f, 100.f, 800.f);
+	gameManager.CreateObstacle(0.f, 800.f, 800.f, 100.f);
 
 	for (int i = 0; i < 20; i++)
 	{

@@ -9,8 +9,6 @@ void PlayerMoving::Update(Player& player, float dt) {
 }
 
 void PlayerHit::Update(Player& player, float dt) {
-    EventHandler* playerEvent = player.GetPlayerInput();
-
     timer += dt;
     player.Invicibility(dt);
     player.Movement(dt);
@@ -21,4 +19,21 @@ void PlayerHit::Update(Player& player, float dt) {
         timer = 0.0f;
         player.StateChange(&player.movement);
     }
+}
+
+void PlayerDashing::Update(Player& player, float dt) {
+    timer += dt;
+    float currentSpeed = player.GetSpeed() * 3.f;
+    float xMove = player.GetDirX() * currentSpeed * dt;
+    float yMove = player.GetDirY() * currentSpeed * dt;
+    player.Move(xMove, yMove);
+
+    if (timer >= (dt * 15)) {
+        timer = 0.0f;
+        player.StateChange(&player.movement);
+    }
+}
+
+void PlayerDying::Update(Player& player, float dt) {
+    player.Kill();
 }

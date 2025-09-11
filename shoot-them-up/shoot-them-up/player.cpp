@@ -33,9 +33,10 @@ void Player::Init(EventHandler* inputManager, float x, float y, float height, fl
     yAim = -1.f;
     shootCooldown = .16f;
     shootTimer = .16f;
-    bleepCooldown = 0.3f;
-    bleepTimer = 0.3f;
+    bleepCooldown = 0.2f;
+    bleepTimer = 0.2f;
     stateMachine.ChangeState(&movement);
+    healthPoints = 5;
 }
 
 void Player::Update(float& dt) {
@@ -48,6 +49,9 @@ void Player::Update(float& dt) {
     if ((shootTimer >= shootCooldown) && !invicible) {
         Shoot();
         shootTimer = 0.f;
+    }
+    if (healthPoints <= 0) {
+        StateChange(&dying);
     }
 
     stateMachine.Update(dt);   
@@ -65,33 +69,38 @@ void Player::OnCollision(Entity* collidedEntity) {
 }
 
 void Player::Shoot() {
-    gameManager->CreateProjectile(xPos, yPos, xAim, yAim);
+    gameManager->CreateProjectile(xPos, yPos, xAim, yAim, 600.0f, static_cast<Character*>(this));
 }
 
 void Player::Movement(float& dt) {
     float currentSpeed = speed;
     if (invicible)
     {
-        currentSpeed *= 0.7;
+        currentSpeed *= 0.7f;
     }
-    float dirX = 0.f;
-    float dirY = 0.f;
+    dirX = 0.f;
+    dirY = 0.f;
 
-    if (playerInput->IsKeyDown(VK_UP) || playerInput->IsKeyDown(90))
+    if (playerInput->IsKeyDown(VK_UP) || playerInput->IsKeyDown('Z'))
     {
         dirY -= 1.f;
     }
-    if (playerInput->IsKeyDown(VK_DOWN) || playerInput->IsKeyDown(83))
+    if (playerInput->IsKeyDown(VK_DOWN) || playerInput->IsKeyDown('S'))
     {
         dirY += 1.f;
     }
-    if (playerInput->IsKeyDown(VK_RIGHT) || playerInput->IsKeyDown(68))
+    if (playerInput->IsKeyDown(VK_RIGHT) || playerInput->IsKeyDown('D'))
     {
         dirX += 1.f;
     }
-    if (playerInput->IsKeyDown(VK_LEFT) || playerInput->IsKeyDown(81))
+    if (playerInput->IsKeyDown(VK_LEFT) || playerInput->IsKeyDown('Q'))
     {
         dirX -= 1.f;
+    }
+
+    if (playerInput->IsKeyDown('E'))
+    {
+        stateMachine.ChangeState(&dashing);
     }
 
     float length = std::sqrt(dirX * dirX + dirY * dirY);
@@ -116,6 +125,10 @@ void Player::Invicibility(float& dt) {
             bleepTimer = 0.0f;
         }
     }
+}
+
+void Player::Dash(float& dt) {
+
 }
 
 void Player::StateChange(State<Player>* newState) {
