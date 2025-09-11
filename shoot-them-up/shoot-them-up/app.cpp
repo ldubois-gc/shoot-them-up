@@ -67,6 +67,7 @@ void App::Start() {
 	gameManager.CreateEnemy(150.f, 50.f, 100.f);
 	gameManager.CreateEnemy(100.f, 50.f, 100.f);
 	gameManager.CreateObstacle(20.f, 200.f, 200.f, 20.f);
+	gameManager.CreateObstacle(200.f, 20.f, 20.f, 200.f);
 
 	/*for (int i = 0; i < 20; i++)
 	{

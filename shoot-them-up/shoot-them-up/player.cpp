@@ -72,7 +72,7 @@ void Player::Movement(float& dt) {
     float currentSpeed = speed;
     if (invicible)
     {
-        currentSpeed *= 0.5;
+        currentSpeed *= 0.7;
     }
     float dirX = 0.f;
     float dirY = 0.f;
@@ -92,6 +92,12 @@ void Player::Movement(float& dt) {
     if (playerInput->IsKeyDown(VK_LEFT) || playerInput->IsKeyDown(81))
     {
         dirX -= 1.f;
+    }
+
+    float length = std::sqrt(dirX * dirX + dirY * dirY);
+    if (length != 0.f) {
+        dirX /= length;
+        dirY /= length;
     }
 
     float xMove = dirX * currentSpeed * dt;

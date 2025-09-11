@@ -34,9 +34,6 @@ void Actor::PushBack(Entity* otherEntity) {
 	float overlapX2 = selfRight - otherEntity->GetX();   // push left
 	float overlapY1 = entityBottom - yPos;   // push down
 	float overlapY2 = selfBottom - otherEntity->GetY();   // push up
-
-	//float minX = abs(overlapX1) < abs(overlapX2) ? overlapX1 : overlapX2;
-	//float minY = abs(overlapY1) < abs(overlapY2) ? overlapY1 : overlapY2;
 	
 	float correctionX = (overlapX1 < overlapX2) ? overlapX1 : -overlapX2;
 	float correctionY = (overlapY1 < overlapY2) ? overlapY1 : -overlapY2;
@@ -46,7 +43,7 @@ void Actor::PushBack(Entity* otherEntity) {
 	} else {
 		yPos += correctionY;
 	}
-	//body.setPosition(sf::Vector2f(xPos, yPos));
+	body.setPosition(sf::Vector2f(xPos, yPos));
 }
 
 void Actor::Update(float& dt) {
