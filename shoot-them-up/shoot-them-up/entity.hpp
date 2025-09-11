@@ -14,7 +14,7 @@ public:
 	void SetColor(sf::Color newColor) { body.setFillColor(newColor); }
 	float GetX() { return xPos; }
 	float GetY() { return yPos; }
-	float GetHeigth() { return heigth; }
+	float GetHeigth() { return height; }
 	float GetWidth() { return width; }
 	
 	void Kill();
@@ -32,7 +32,7 @@ public:
 protected:
 	float xPos;
 	float yPos;
-	float heigth;
+	float height;
 	float width;
 	bool exists;
 	sf::RectangleShape body;

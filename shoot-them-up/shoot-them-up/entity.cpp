@@ -27,10 +27,10 @@ Entity::~Entity() {
 void Entity::Init(float x, float y, float h, float w, sf::Color color) {
 	xPos = x;
 	yPos = y;
-	heigth = h;
+	height = h;
 	width = w;
 	exists = true;
-	body.setSize(sf::Vector2f(heigth, width));
+	body.setSize(sf::Vector2f(width, height));
 	body.setPosition(sf::Vector2f(xPos, yPos));
 	body.setFillColor(color);
 

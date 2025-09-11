@@ -79,6 +79,6 @@ void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir) {
 
 void Manager::CreateObstacle(float xPos, float yPos, float height, float width) {
 	Obstacle* obstacle = new Obstacle();
-	obstacle->Init(xPos, yPos, 30.f, 30.f, sf::Color::White);
+	obstacle->Init(xPos, yPos, width, height, sf::Color::White);
 	AddEntity(obstacle);
 }

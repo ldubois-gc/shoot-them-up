@@ -65,9 +65,10 @@ void App::Start() {
 	gameManager.CreatePlayer(&input, 500.f, 500.f);
 	gameManager.CreateEnemy(50.f, 50.f, 100.f);
 	gameManager.CreateEnemy(150.f, 50.f, 100.f);
-	
+	gameManager.CreateEnemy(100.f, 50.f, 100.f);
+	gameManager.CreateObstacle(20.f, 200.f, 200.f, 20.f);
 
-	for (int i = 0; i < 20; i++)
+	/*for (int i = 0; i < 20; i++)
 	{
 		float randomXPos = ((float)rand()) / (float)800;
 		float randomYPos = ((float)rand()) / (float)800;
@@ -79,5 +80,5 @@ void App::Start() {
 		float randomXPos = ((float)rand()) / (float)800;
 		float randomYPos = ((float)rand()) / (float)800;
 		gameManager.CreateObstacle(randomXPos, randomYPos, 20.f, 20.f);
-	}
+	}*/
 }

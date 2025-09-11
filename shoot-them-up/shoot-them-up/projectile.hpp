@@ -12,6 +12,8 @@ public:
 	Projectile();
 	~Projectile();
 
+	Character* GetShooter() { return shooter; }
+
 	EntityType Type() override { return EntityType::PROJECTILE; }
 	void OnCollision(Entity* collidedEntity) override;
 

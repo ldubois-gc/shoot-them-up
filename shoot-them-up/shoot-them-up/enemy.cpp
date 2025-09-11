@@ -35,11 +35,8 @@ void Enemy::Update(float& dt) {
 
     float currentSpeed = speed;
 
-    float xMove = direction.x * currentSpeed * dt + correctionX;
-    float yMove = direction.y * currentSpeed * dt + correctionY;
+    float xMove = direction.x * currentSpeed * dt;
+    float yMove = direction.y * currentSpeed * dt;
 
     Move(xMove, yMove);
-
-    correctionX = 0;
-    correctionY = 0;
 }

@@ -36,8 +36,6 @@ void Player::Init(EventHandler* inputManager, float x, float y, float height, fl
     bleepCooldown = 0.3f;
     bleepTimer = 0.3f;
     stateMachine.ChangeState(&movement);
-    correctionX = 0;
-    correctionY = 0;
 }
 
 void Player::Update(float& dt) {
@@ -59,10 +57,7 @@ void Player::OnCollision(Entity* collidedEntity) {
     if (collidedEntity->Type() == EntityType::OBSTACLE) {
         PushBack(collidedEntity);
     }
-    if (collidedEntity->Type() == EntityType::ENEMY && !invicible) {
-        PushBack(collidedEntity);
-    }
-    if ((collidedEntity->Type() == EntityType::ENEMY || collidedEntity->Type() == EntityType::PROJECTILE) && !invicible) {
+    if ((collidedEntity->Type() == EntityType::ENEMY || (collidedEntity->Type() == EntityType::PROJECTILE) && static_cast<Projectile*>(collidedEntity)->GetShooter() != this && !invicible)) {
         invicible = true;
         StateChange(&hasBeenHit);
         healthPoints -= 1;
@@ -75,6 +70,10 @@ void Player::Shoot() {
 
 void Player::Movement(float& dt) {
     float currentSpeed = speed;
+    if (invicible)
+    {
+        currentSpeed *= 0.5;
+    }
     float dirX = 0.f;
     float dirY = 0.f;
 
@@ -95,13 +94,10 @@ void Player::Movement(float& dt) {
         dirX -= 1.f;
     }
 
-    float xMove = dirX * currentSpeed * dt + correctionX;
-    float yMove = dirY * currentSpeed * dt + correctionY;
+    float xMove = dirX * currentSpeed * dt;
+    float yMove = dirY * currentSpeed * dt;
 
     Move(xMove, yMove);
-
-    correctionX = 0;
-    correctionY = 0;
 }
 
 void Player::Invicibility(float& dt) {

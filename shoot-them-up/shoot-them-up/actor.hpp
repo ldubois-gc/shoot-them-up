@@ -23,7 +23,4 @@ public:
 protected:
 	float healthPoints;
 	float speed;
-
-	float correctionX;
-	float correctionY;
 };
