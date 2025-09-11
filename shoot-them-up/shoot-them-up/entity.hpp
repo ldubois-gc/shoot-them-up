@@ -10,8 +10,12 @@ public:
 
 	void SetX(float x) { xPos = x; }
 	void SetY(float y) { yPos = y; }
+	void SetColor(sf::Color newColor) { render.setFillColor(newColor); }
 	float GetX() { return xPos; }
 	float GetY() { return yPos; }
+	
+	void Kill();
+	bool Exists();
 
 	void Draw(sf::RenderWindow &window);
 	virtual void Update(float& dt) = 0;

@@ -2,7 +2,7 @@
 #include "enemy.hpp"
 #include "player.hpp"
 
-Enemy::Enemy(float x, float y, float heigth, float width, sf::Color color, Player* gamePlayer, float actorSpeed) : Character(x, y, heigth, width, color, actorSpeed)
+Enemy::Enemy(float x, float y, float heigth, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed) : Character(x, y, heigth, width, color, manager, actorSpeed)
 {
     player = gamePlayer;
 }
