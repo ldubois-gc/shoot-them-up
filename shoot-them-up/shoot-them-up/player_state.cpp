@@ -6,23 +6,19 @@
 void PlayerMoving::Update(Player& player, float dt) {
     EventHandler* playerEvent = player.GetPlayerInput();
     player.Movement(dt);
-
-    if (playerEvent->IsKeyDown(69)) // || playerInput->IsKeyDown(87) || playerInput->IsKeyDown(90)
-    {
-        player.SetInvicibility(true);
-        player.StateChange(&player.hasBeenHit);
-    }
 }
 
 void PlayerHit::Update(Player& player, float dt) {
     EventHandler* playerEvent = player.GetPlayerInput();
+
+    timer += dt;
     player.Invicibility(dt);
+    player.Movement(dt);
 
-
-    if (playerEvent->IsKeyDown(69)) // || playerInput->IsKeyDown(87) || playerInput->IsKeyDown(90)
-    {
+    if (timer >= (dt * 200)) {
         player.SetInvicibility(false);
         player.SetColor(sf::Color::Green);
+        timer = 0.0f;
         player.StateChange(&player.movement);
     }
 }

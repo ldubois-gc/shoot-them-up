@@ -1,15 +1,28 @@
 #include "framework.h"
 #include "projectile.hpp"
+#include "character.hpp"
 
-Projectile::Projectile(float x, float y, float height, float width, float xDir, float yDir, sf::Color color, Manager* manager, Character* newShooter, float actorSpeed) : Actor(x, y, height, width, color, actorSpeed) {
-	xForward = xDir;
-	yForward = yDir;
-	shooter = newShooter;
-	body.setSize(sf::Vector2f(8.f, 8.f));
+//Projectile::Projectile(float x, float y, float height, float width, float xDir, float yDir, sf::Color color, Manager* manager, Character* newShooter, float actorSpeed) : Actor(x, y, height, width, color, actorSpeed) {
+//	xForward = xDir;
+//	yForward = yDir;
+//	shooter = newShooter;
+//	body.setSize(sf::Vector2f(8.f, 8.f));
+//}
+
+Projectile::Projectile() {
+
 }
 
 Projectile::~Projectile() {
 
+}
+
+void Projectile::Init(float x, float y, float height, float width, float xDir, float yDir, sf::Color color, Manager* manager, Character* newShooter, float actorSpeed) {
+	Actor::Init(x, y, height, width, color, actorSpeed);
+	xForward = xDir;
+	yForward = yDir;
+	shooter = newShooter;
+	body.setSize(sf::Vector2f(8.f, 8.f));
 }
 
 void Projectile::Update(float& dt) {

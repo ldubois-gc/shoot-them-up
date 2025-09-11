@@ -1,6 +1,10 @@
 #include "framework.h"
 #include "manager.hpp"
 #include "entity.hpp"
+#include "player.hpp"
+#include "enemy.hpp"
+#include "projectile.hpp"
+#include "obstacle.hpp"
 
 float gameClock;
 
@@ -17,14 +21,6 @@ void Manager::ProcessCollision(Entity* entity) {
 			otherEntity->OnCollision(entity);
 		}
 	}
-    /*for (Entity* entity : entities) {
-        for (Entity* otherEntity : entities) {
-            if (entity != otherEntity && CheckCollision(entity, otherEntity)) {
-				entity->OnCollision();
-				otherEntity->OnCollision();
-            }
-        }
-    }*/
 }
 
 bool Manager::CheckCollision(Entity* a, Entity* b) {
@@ -33,6 +29,7 @@ bool Manager::CheckCollision(Entity* a, Entity* b) {
 			a->GetY() < b->GetY() + b->GetHeigth() &&
 			a->GetY() + a->GetHeigth() > b->GetY();
 }
+
 
 void Manager::ResetAllCollisions() {
     for (Entity* entity : entities) {
@@ -60,4 +57,28 @@ void Manager::RemoveFlaggedEntities() {
 			[](Entity* e) { return !e->Exists(); }), 
 		entities.end()
 	);
+}
+
+void Manager::CreatePlayer(EventHandler* input, float xPos, float yPos) {
+	player = new Player();
+	player->Init(input, xPos, yPos, 20.f, 20.f, sf::Color::Green, this, 200.f);
+	AddEntity(player);
+}
+
+void Manager::CreateEnemy(float xPos, float yPos, float speed) {
+	Enemy* enemy = new Enemy();
+	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Red, this, player, speed);
+	AddEntity(enemy);
+}
+
+void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir) {
+	Projectile* bullet = new Projectile();
+	bullet->Init(xPos, yPos, 5.f, 5.f, xDir, yDir, sf::Color::Blue, this, player, 500.f);
+	AddEntity(bullet);
+}
+
+void Manager::CreateObstacle(float xPos, float yPos, float height, float width) {
+	Obstacle* obstacle = new Obstacle();
+	obstacle->Init(xPos, yPos, 30.f, 30.f, sf::Color::White);
+	AddEntity(obstacle);
 }

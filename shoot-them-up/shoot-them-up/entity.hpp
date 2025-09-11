@@ -1,13 +1,12 @@
 #pragma once
 
-// class Sprite;
-
 enum class EntityType { PLAYER, ENEMY, OBSTACLE, PROJECTILE };
 
 class Entity
 {
 public:
-	Entity(float x, float y, float h, float w, sf::Color color);
+	//Entity(float x, float y, float h, float w, sf::Color color);
+	Entity();
 	virtual ~Entity();
 
 	void SetX(float x) { xPos = x; }
@@ -23,8 +22,10 @@ public:
 
 	virtual void OnCollision(Entity* collidedEntity) = 0;
 	virtual EntityType Type() = 0;
-	void Draw(sf::RenderWindow &window);
+
+	virtual void Init(float x, float y, float h, float w, sf::Color color);
 	virtual void Update(float& dt) = 0;
+	void Draw(sf::RenderWindow &window);
 
 	bool collide;
 

@@ -16,6 +16,8 @@ public:
 	//void Enter(Player& player);
 	void Update(Player& player, float dt) override;
 	//void Exit(Player& player);
+private:
+	float timer;
 };
 
 //class PlayerDying: public State<Player> {

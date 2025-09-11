@@ -1,12 +1,12 @@
 #pragma once
 
 #include "entity.hpp"
-#include "manager.hpp"
 
 class Actor : public Entity
 {
 public:
-	Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 20.f);
+	//Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 20.f);
+	Actor();
 	virtual ~Actor();
 
 	float GetSpeed() { return speed; }
@@ -16,6 +16,8 @@ public:
 	
 	virtual EntityType Type() override = 0;
 	void OnCollision(Entity* collidedEntity) override;
+
+	void Init(float x, float y, float heigth, float width, sf::Color color, float actorSpeed = 20.f);
 	void Update(float& dt) override;
 
 protected:
@@ -24,5 +26,4 @@ protected:
 
 	float correctionX;
 	float correctionY;
-	//Manager* gameManager;
 };

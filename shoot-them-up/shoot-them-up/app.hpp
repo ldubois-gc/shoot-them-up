@@ -13,6 +13,7 @@ public:
 	int Init();
 	int Runtime();
 
+	void Start();
 	void Update();
 	void Render();
 
@@ -20,6 +21,5 @@ private:
 	Timer timer;
 	Manager gameManager;
 	EventHandler input;
-	//std::vector<Entity*> allEntities;
 	sf::RenderWindow* window;
 };

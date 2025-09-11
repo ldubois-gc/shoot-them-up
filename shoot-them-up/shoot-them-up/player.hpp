@@ -13,7 +13,8 @@ public:
 	PlayerMoving movement;
 	PlayerHit hasBeenHit;
 	
-	Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed);
+	//Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed);
+	Player();
 	virtual ~Player();
 
 	bool GetInvicible() { return invicible; }
@@ -24,6 +25,8 @@ public:
 
 	EntityType Type() override { return EntityType::PLAYER; }
 	void OnCollision(Entity* collidedEntity) override;
+	
+	void Init(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed);
 	using Actor::Update;
 	void Update(float& dt) override;
 

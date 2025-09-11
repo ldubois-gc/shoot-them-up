@@ -18,20 +18,11 @@ int App::Init() {
 	window->setFramerateLimit(60);
 
 	input.InitWindow(window);
-
-	//allEntities = gameManager.GetEntities();
 	return 0;
 }
 
 int App::Runtime() {
-	Player* player = new Player(&input, 500.f, 500.f, 20.f, 20.f, sf::Color::Green, &gameManager, 200.f);
-	Enemy* enemy1 = new Enemy(50.f, 50.f, 10.f, 10.f, sf::Color::Red, &gameManager, player);
-	Enemy* enemy2 = new Enemy(200.f, 50.f, 10.f, 10.f, sf::Color::Red, &gameManager, player);
-	Obstacle* obstacle = new Obstacle(100.f, 200.f, 20.f, 20.f, sf::Color::White);
-	gameManager.AddEntity(player);
-	gameManager.AddEntity(enemy1);
-	gameManager.AddEntity(enemy2);
-	gameManager.AddEntity(obstacle);
+	Start();
 
 	while (window->isOpen()) {
 		while (const std::optional event = window->pollEvent())
@@ -68,4 +59,13 @@ void App::Render() {
 		entity->Draw(*window);
 	}
 	window->display();
+}
+
+void App::Start() {
+	gameManager.CreatePlayer(&input, 500.f, 500.f);
+	gameManager.CreateEnemy(50.f, 50.f, 100.f);
+	gameManager.CreateEnemy(150.f, 50.f, 100.f);
+	gameManager.CreateEnemy(250.f, 50.f, 100.f);
+	gameManager.CreateObstacle(100.f, 200.f, 20.f, 20.f);
+	gameManager.CreateObstacle(120.f, 220.f, 20.f, 20.f);
 }

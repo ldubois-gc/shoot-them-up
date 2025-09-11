@@ -1,6 +1,8 @@
 #pragma once
 
 class Entity;
+class EventHandler;
+class Player;
 
 class Manager
 {
@@ -15,20 +17,16 @@ public:
 	void AddEntity(Entity* newEntity);
 	void RemoveFlaggedEntities();
 
-	//template<typename T, typename... Args>
-	//T* Spawn(Args... args);
-
-	/*template <typename T, typename... Args>
-	T* Spawn(Args... args) {
-		T* obj = new T(args...);
-		newEntities.push_back(obj);
-		return obj;
-	}*/
+	void CreatePlayer(EventHandler* input, float xPos, float yPos);
+	void CreateEnemy(float xPos, float yPos, float speed);
+	void CreateProjectile(float xPos, float yPos, float xDir, float yDir);
+	void CreateObstacle(float xPos, float yPos, float height, float width);
 
 	void ProcessCollision(Entity* entity);
 	bool CheckCollision(Entity* a, Entity* b);
 
 private:
+	Player* player;
 	std::vector<Entity*> newEntities;
 	std::vector<Entity*> entities;
 	void ResetAllCollisions();

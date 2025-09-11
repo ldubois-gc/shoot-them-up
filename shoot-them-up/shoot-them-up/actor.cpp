@@ -2,12 +2,20 @@
 #include "actor.hpp"
 
 
-Actor::Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed) : Entity(x, y, heigth, width, color) {
-	speed = actorSpeed;
+//Actor::Actor(float x, float y, float heigth, float width, sf::Color color, float actorSpeed) : Entity(x, y, heigth, width, color) {
+//	speed = actorSpeed;
+//}
+Actor::Actor() {
+
 }
 
 Actor::~Actor() {
 
+}
+
+void Actor::Init(float x, float y, float height, float width, sf::Color color, float actorSpeed) {
+	Entity::Init(x, y, height, width, color);
+	speed = actorSpeed;
 }
 
 void Actor::Move(float x, float y) {

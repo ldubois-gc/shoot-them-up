@@ -1,7 +1,30 @@
 #include "framework.h"
 #include "entity.hpp"
 
-Entity::Entity(float x, float y, float h, float w, sf::Color color) {
+//Entity::Entity(float x, float y, float h, float w, sf::Color color) {
+//	xPos = x;
+//	yPos = y;
+//	heigth = h;
+//	width = w;
+//	exists = true;
+//	body.setSize(sf::Vector2f(heigth, width));
+//	body.setPosition(sf::Vector2f(xPos, yPos));
+//	body.setFillColor(color);
+//
+//	collide = false;
+//
+//	exists = true;
+//}
+
+Entity::Entity() {
+	
+}
+
+Entity::~Entity() {
+
+}
+
+void Entity::Init(float x, float y, float h, float w, sf::Color color) {
 	xPos = x;
 	yPos = y;
 	heigth = h;
@@ -12,12 +35,7 @@ Entity::Entity(float x, float y, float h, float w, sf::Color color) {
 	body.setFillColor(color);
 
 	collide = false;
-
 	exists = true;
-}
-
-Entity::~Entity() {
-
 }
 
 void Entity::Draw(sf::RenderWindow &window) {
