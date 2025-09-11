@@ -25,7 +25,8 @@ void Enemy::OnCollision(Entity* collidedEntity) {
         PushBack(collidedEntity);
     }
     if (collidedEntity->Type() == EntityType::PROJECTILE) {
-        
+        // State hurt
+        healthPoints -= 1;
     }
 }
 

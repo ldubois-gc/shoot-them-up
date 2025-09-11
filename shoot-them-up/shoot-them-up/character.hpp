@@ -14,6 +14,6 @@ public:
 	void Init(float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f);
 
 protected:
-	float healthPoints;
+	int healthPoints;
 	Manager* gameManager;
 };

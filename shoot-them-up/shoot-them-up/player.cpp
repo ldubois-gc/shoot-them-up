@@ -60,9 +60,12 @@ void Player::OnCollision(Entity* collidedEntity) {
         PushBack(collidedEntity);
     }
     if (collidedEntity->Type() == EntityType::ENEMY && !invicible) {
-        invicible = true;
         PushBack(collidedEntity);
+    }
+    if ((collidedEntity->Type() == EntityType::ENEMY || collidedEntity->Type() == EntityType::PROJECTILE) && !invicible) {
+        invicible = true;
         StateChange(&hasBeenHit);
+        healthPoints -= 1;
     }
 }
 
