@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "enemy.hpp"
 #include "player.hpp"
-#include "obstacle.hpp"
 #include "manager.hpp"
 
 Enemy::Enemy() : stateMachine(*this) {
@@ -24,7 +23,6 @@ void Enemy::OnCollision(Entity* collidedEntity) {
         PushBack(collidedEntity);
     }
     if (collidedEntity->Type() == EntityType::PROJECTILE) {
-        // State hurt
         StateChange(&enemyHit);
         healthPoints -= 1;
     }

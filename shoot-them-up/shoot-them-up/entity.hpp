@@ -5,7 +5,6 @@ enum class EntityType { PLAYER, ENEMY, OBSTACLE, PROJECTILE, BOMBS };
 class Entity
 {
 public:
-	//Entity(float x, float y, float h, float w, sf::Color color);
 	Entity();
 	virtual ~Entity();
 
