@@ -12,6 +12,7 @@ public:
 	sf::RenderWindow* GetWindow() { return window; };
 
 	bool IsKeyDown(int keyCode);
+	bool IsKeyPress(int keyCode);
 	void UpdateEvents();
 
 private:

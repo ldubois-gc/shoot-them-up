@@ -18,6 +18,11 @@ bool EventHandler::IsKeyDown(int keyCode) {
 	return keys[keyCode];
 }
 
+bool EventHandler::IsKeyPress(int keyCode) {
+	// return (GetAsyncKeyState(keyCode) & 0x8000) != 0;
+	return (GetAsyncKeyState(keyCode) & 0x0001) != 0;
+}
+
 void EventHandler::UpdateEvents() {
 	for (int i = 0; i < 255; i++) {
 		if ((GetAsyncKeyState(i) & 0x8000) != 0) {
