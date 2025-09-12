@@ -37,6 +37,7 @@ public:
 	void Movement(float& dt);
 	void Dash(float& dt);
 	void Shoot();
+	void Bomb();
 	void Invicibility(float& dt);
 
 	void StateChange(State<Player>* newState);
@@ -50,10 +51,11 @@ private:
 	float shootTimer;
 	float bleepCooldown;
 	float bleepTimer;
+	float bombCooldown;
+	float bombTimer;
 
 	bool invicible;
 
 	EventHandler* playerInput;
-
 	StateMachine<Player> stateMachine;
 };

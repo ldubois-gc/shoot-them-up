@@ -15,7 +15,7 @@ void AppInGame::Update(App& app, float dt) {
 	Player* player = appManager->GetPlayer();
 	app.GameUpdate(dt);
 
-	if (!player->Exists())
+	if (!player->Exists() || appManager->GetNumberOfFoes() <= 0)
 	{
 		app.StateChange(&app.gameOver);
 	}

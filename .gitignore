@@ -63,6 +63,7 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+*.cd
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

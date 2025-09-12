@@ -4,6 +4,7 @@
 #include "player.hpp"
 #include "enemy.hpp"
 #include "projectile.hpp"
+#include "bomb.hpp"
 #include "obstacle.hpp"
 
 float gameClock;
@@ -54,7 +55,13 @@ void Manager::RemoveFlaggedEntities() {
 		std::remove_if(
 			entities.begin(), 
 			entities.end(), 
-			[](Entity* e) { return !e->Exists(); }), 
+			[](Entity* e) { 
+				if (!e->Exists()) {
+					delete e; 
+					return true;      
+				}
+				return false;
+			}), 
 		entities.end()
 	);
 }
@@ -75,12 +82,19 @@ void Manager::CreateEnemy(float xPos, float yPos, float speed) {
 	Enemy* enemy = new Enemy();
 	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Yellow, this, player, speed);
 	AddEntity(enemy);
+	nFoes++;
 }
 
 void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter) {
 	Projectile* bullet = new Projectile();
-	bullet->Init(xPos, yPos, 8.f, 3.f, xDir, yDir, sf::Color::Blue, this, shooter, bulletSpeed);
+	bullet->Init(xPos, yPos, 8.f, 3.f, xDir, yDir, sf::Color(214, 50, 0), this, shooter, bulletSpeed);
 	AddEntity(bullet);
+}
+
+void Manager::CreateBomb(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter) {
+	Bomb* bomb = new Bomb();
+	bomb->Init(xPos, yPos, 15.f, 15.f, xDir, yDir, sf::Color(255, 82, 0), this, shooter, bulletSpeed);
+	AddEntity(bomb);
 }
 
 void Manager::CreateObstacle(float xPos, float yPos, float height, float width) {

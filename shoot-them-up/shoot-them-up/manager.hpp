@@ -12,6 +12,7 @@ public:
 	Manager();
 	~Manager();
 
+	int GetNumberOfFoes() { return nFoes; }
 	Player* GetPlayer() { return player; }
 	std::vector<Entity*>& GetEntities() { return entities; }
 	std::vector<Entity*>& GetNewEntities() { return newEntities; }
@@ -21,16 +22,20 @@ public:
 	void AddEntity(Entity* newEntity);
 	void RemoveFlaggedEntities();
 	void ClearEntities();
+	void RemoveFoe() { nFoes--; };
 
 	void CreatePlayer(EventHandler* input, float xPos, float yPos);
 	void CreateEnemy(float xPos, float yPos, float speed);
 	void CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter);
+	void CreateBomb(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter);
 	void CreateObstacle(float xPos, float yPos, float height, float width);
 
 	void ProcessCollision(Entity* entity);
 	bool CheckCollision(Entity* a, Entity* b);
 
 private:
+	int nFoes;
+
 	Player* player;
 	std::vector<Entity*> newEntities;
 	std::vector<Entity*> entities;

@@ -22,6 +22,8 @@ void Player::Init(EventHandler* inputManager, float x, float y, float height, fl
     shootTimer = .16f;
     bleepCooldown = 0.2f;
     bleepTimer = 0.2f;
+    bombCooldown = 1.5f;
+    bombTimer = 1.5f;
     stateMachine.ChangeState(&movement);
     healthPoints = 5;
 }
@@ -33,9 +35,14 @@ void Player::Update(float& dt) {
     yAim = directionToMouse.y;
 
     shootTimer += dt;
+    bombTimer += dt;
     if ((shootTimer >= shootCooldown) && !invicible) {
         Shoot();
         shootTimer = 0.f;
+    }
+    if (playerInput->IsKeyDown('A') && (bombTimer >= bombCooldown) && !invicible) {
+        Bomb();
+        bombTimer = 0.f;
     }
     if (healthPoints <= 0) {
         StateChange(&dying);
@@ -58,6 +65,10 @@ void Player::OnCollision(Entity* collidedEntity) {
 
 void Player::Shoot() {
     gameManager->CreateProjectile(xPos, yPos, xAim, yAim, 600.0f, static_cast<Character*>(this));
+}
+
+void Player::Bomb() {
+    gameManager->CreateBomb(xPos, yPos, xAim, yAim, 100.0f, static_cast<Character*>(this));
 }
 
 void Player::Movement(float& dt) {
