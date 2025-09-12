@@ -1,9 +1,6 @@
 #include "framework.h"
 #include "app.hpp"
 #include "entity.hpp"
-#include "player.hpp"
-#include "enemy.hpp"
-#include "obstacle.hpp"
 #include "app_state.hpp"
 
 App::App() : appMachine(*this) {

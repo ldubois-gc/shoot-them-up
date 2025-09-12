@@ -1,7 +1,6 @@
 #pragma once
 
 #include "character.hpp"
-#include "actor.hpp"
 #include "state.hpp"
 #include "player_state.hpp"
 
@@ -31,7 +30,6 @@ public:
 	void OnCollision(Entity* collidedEntity) override;
 	
 	void Init(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed);
-	using Actor::Update;
 	void Update(float& dt) override;
 
 	void Movement(float& dt);

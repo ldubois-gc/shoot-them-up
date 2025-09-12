@@ -2,6 +2,7 @@
 #include "app_state.hpp"
 #include "player.hpp"
 #include "app.hpp"
+#include "manager.hpp"
 #include "event_handler.hpp"
 
 void AppInGame::Enter(App& app) {

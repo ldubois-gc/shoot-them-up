@@ -7,8 +7,6 @@
 #include "bomb.hpp"
 #include "obstacle.hpp"
 
-float gameClock;
-
 Manager::Manager() {}
 
 Manager::~Manager() {}
