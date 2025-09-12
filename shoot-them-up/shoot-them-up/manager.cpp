@@ -59,6 +59,12 @@ void Manager::RemoveFlaggedEntities() {
 	);
 }
 
+void Manager::ClearEntities() {
+	for (Entity* entity : entities) {
+		entity->Kill();
+	}
+}
+
 void Manager::CreatePlayer(EventHandler* input, float xPos, float yPos) {
 	player = new Player();
 	player->Init(input, xPos, yPos, 20.f, 20.f, sf::Color::Green, this, 200.f);
