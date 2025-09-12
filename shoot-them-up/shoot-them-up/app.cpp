@@ -55,6 +55,8 @@ void App::GameUpdate(float& dt) {
 
 void App::GameStart() {
 	gameManager.CreatePlayer(&input, 400.f, 400.f);
+
+	// Create walls around the window
 	gameManager.CreateObstacle(-100.f, 0.f, 100.f, 800.f);
 	gameManager.CreateObstacle(0.f, -100.f, 800.f, 100.f);
 	gameManager.CreateObstacle(800.f, 0.f, 100.f, 800.f);
@@ -69,9 +71,12 @@ void App::GameStart() {
 
 	for (int i = 0; i < 100; i++)
 	{
-		float randomXPos = (float)rand() / (float)RAND_MAX * 800.0f;
-		float randomYPos = (float)rand() / (float)RAND_MAX * 800;
-		gameManager.CreateObstacle(randomXPos, randomYPos, 20.f, 20.f);
+		float randomXPos = (float)rand() / (float)RAND_MAX * 800.f;
+		float randomYPos = (float)rand() / (float)RAND_MAX * 800.f;
+
+		float randomHeight = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
+		float randomWidth = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
+		gameManager.CreateObstacle(randomXPos, randomYPos, randomHeight, randomWidth);
 	}
 }
 

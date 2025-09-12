@@ -28,6 +28,9 @@ private:
 	Player* player;
 	sf::Vector2f playerDirection;
 
+	bool collideObstacle;
+
+	float timer;
 	float hitCooldown;
 
 	StateMachine<Enemy> stateMachine;
