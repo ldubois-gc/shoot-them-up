@@ -23,7 +23,9 @@ public:
 	void ClearEntities();
 
 	void CreatePlayer(EventHandler* input, float xPos, float yPos);
-	void CreateEnemy(float xPos, float yPos, float speed);
+	void CreateHittingEnemy(float xPos, float yPos, float speed);
+	void CreateShootingEnemy(float xPos, float yPos, float speed);
+
 	void CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter);
 	void CreateObstacle(float xPos, float yPos, float height, float width);
 

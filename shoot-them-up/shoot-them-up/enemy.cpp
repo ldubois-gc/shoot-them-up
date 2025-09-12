@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "obstacle.hpp"
 #include "manager.hpp"
+#include "projectile.hpp"
 
 Enemy::Enemy() : stateMachine(*this) {
 
@@ -12,12 +13,14 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::Init(float x, float y, float height, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed) {
+void Enemy::Init(float x, float y, float height, float width, sf::Color color, Manager* manager, Player* gamePlayer, std::vector<Obstacle*>* allObstacles, float actorSpeed) {
     Character::Init(x, y, height, width, color, manager, actorSpeed);
     player = gamePlayer;
     collideObstacle = false;
+    moveX = false;
     stateMachine.ChangeState(&trackPlayer);
     healthPoints = 10;
+    obstacles = allObstacles;
 }
 
 void Enemy::OnCollision(Entity* collidedEntity) {
@@ -27,7 +30,7 @@ void Enemy::OnCollision(Entity* collidedEntity) {
     if (collidedEntity->Type() == EntityType::OBSTACLE) {
         collideObstacle = true;
     }
-    if (collidedEntity->Type() == EntityType::PROJECTILE) {
+    if (collidedEntity->Type() == EntityType::PROJECTILE && static_cast<Projectile*>(collidedEntity)->GetShooter()->Type() != EntityType::ENEMY) {
         StateChange(&enemyHit);
         healthPoints -= 1;
     }
@@ -47,13 +50,23 @@ void Enemy::Movement(float& dt) {
     float xMove = 0.f;
     float yMove = 0.f;
 
-    timer += dt;
-
-    if (timer >= dt * 120)
-        collideObstacle = false;
-
     if (collideObstacle) {
-        playerDirection = GetDirectionToPoint(xPos < player->GetX() ? xPos - 100000.f : xPos + 100000.f, yPos < player->GetY() ? yPos - 100000.f : yPos + 100000.f);
+        timer += dt;
+
+        if (timer >= dt * 100)
+            moveX = !moveX;
+
+        if (timer >= dt * 200) {
+            collideObstacle = false;
+            timer = 0;
+        }
+
+        if (moveX) {
+            playerDirection = GetDirectionToPoint(xPos > player->GetX() + 100 ? xPos - 100.f : xPos + 100.f, player->GetY());
+        }
+        else {
+            playerDirection = GetDirectionToPoint(player->GetX(), yPos > player->GetY() + 100 ? yPos - 100.f : yPos + 100.f);
+        }
     }
     else {
         playerDirection = GetDirectionToPoint(player->GetX(), player->GetY());

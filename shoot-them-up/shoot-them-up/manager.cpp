@@ -5,6 +5,8 @@
 #include "enemy.hpp"
 #include "projectile.hpp"
 #include "obstacle.hpp"
+#include "shooting_enemy.hpp"
+#include "hitting_enemy.hpp"
 
 float gameClock;
 
@@ -71,9 +73,15 @@ void Manager::CreatePlayer(EventHandler* input, float xPos, float yPos) {
 	AddEntity(player);
 }
 
-void Manager::CreateEnemy(float xPos, float yPos, float speed) {
-	Enemy* enemy = new Enemy();
-	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Yellow, this, player, speed);
+void Manager::CreateHittingEnemy(float xPos, float yPos, float speed) {
+	HittingEnemy* enemy = new HittingEnemy();
+	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Yellow, this, player, &obstacles, speed);
+	AddEntity(enemy);
+}
+
+void Manager::CreateShootingEnemy(float xPos, float yPos, float speed) {
+	ShootingEnemy* enemy = new ShootingEnemy();
+	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Cyan, this, player, &obstacles, speed);
 	AddEntity(enemy);
 }
 

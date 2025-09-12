@@ -62,20 +62,33 @@ void App::GameStart() {
 	gameManager.CreateObstacle(800.f, 0.f, 100.f, 800.f);
 	gameManager.CreateObstacle(0.f, 800.f, 800.f, 100.f);
 
-	for (int i = 0; i < 20; i++)
+	float randomXPos = 0.f;
+	float randomYPos = 0.f;
+
+	for (int i = 0; i < 10; i++)
 	{
-		float randomXPos = (float)rand() / (float)RAND_MAX * 800;
-		float randomYPos = (float)rand() / (float)RAND_MAX * 800;
-		gameManager.CreateEnemy(randomXPos, randomYPos, 80.f);
+		randomXPos = (float)rand() / (float)RAND_MAX * 800;
+		randomYPos = (float)rand() / (float)RAND_MAX * 800;
+		gameManager.CreateHittingEnemy(randomXPos, randomYPos, 80.f);
 	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		float randomXPos = (float)rand() / (float)RAND_MAX * 800.f;
-		float randomYPos = (float)rand() / (float)RAND_MAX * 800.f;
+		randomXPos = (float)rand() / (float)RAND_MAX * 800;
+		randomYPos = (float)rand() / (float)RAND_MAX * 800;
+		gameManager.CreateShootingEnemy(randomXPos, randomYPos, 80.f);
+	}
 
-		float randomHeight = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
-		float randomWidth = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
+	float randomHeight = 0.f;
+	float randomWidth = 0.f;
+
+	for (int i = 0; i < 50; i++)
+	{
+		randomXPos = (float)rand() / (float)RAND_MAX * 800.f;
+		randomYPos = (float)rand() / (float)RAND_MAX * 800.f;
+
+		randomHeight = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
+		randomWidth = (float)rand() / (float)RAND_MAX * 30.f + 10.f;
 		gameManager.CreateObstacle(randomXPos, randomYPos, randomHeight, randomWidth);
 	}
 }

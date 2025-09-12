@@ -4,6 +4,7 @@
 #include "enemy_state.hpp"
 
 class Player;
+class Obstacle;
 
 class Enemy : public Character
 {
@@ -19,16 +20,19 @@ public:
 	void OnCollision(Entity* collidedEntity) override;
 
 	void Movement(float& dt);
-	void Init(float x, float y, float height, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed = 100.f);
+	void Init(float x, float y, float height, float width, sf::Color color, Manager* manager, Player* gamePlayer, std::vector<Obstacle*>* allObstacles, float actorSpeed = 100.f);
 	void Update(float& dt) override;
 
 	void StateChange(State<Enemy>* newState);
 
-private:
+protected:
 	Player* player;
 	sf::Vector2f playerDirection;
 
+	std::vector<Obstacle*>* obstacles;
+
 	bool collideObstacle;
+	bool moveX;
 
 	float timer;
 	float hitCooldown;
