@@ -25,6 +25,7 @@ public:
 	void CreatePlayer(EventHandler* input, float xPos, float yPos);
 	void CreateEnemy(float xPos, float yPos, float speed);
 	void CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter);
+	void CreateBomb(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter);
 	void CreateObstacle(float xPos, float yPos, float height, float width);
 
 	void ProcessCollision(Entity* entity);

@@ -1,6 +1,6 @@
 #pragma once
 
-enum class EntityType { PLAYER, ENEMY, OBSTACLE, PROJECTILE };
+enum class EntityType { PLAYER, ENEMY, OBSTACLE, PROJECTILE, BOMBS };
 
 class Entity
 {
