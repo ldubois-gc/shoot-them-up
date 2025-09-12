@@ -2,6 +2,7 @@
 #include "enemy_state.hpp"
 
 #include "enemy.hpp"
+#include "manager.hpp"
 
 void EnemyTracking::Update(Enemy& enemy, float dt) {
 	enemy.Movement(dt);
@@ -20,5 +21,7 @@ void EnemyHit::Update(Enemy& enemy, float dt) {
 }
 
 void EnemyDying::Update(Enemy& enemy, float dt) {
+    Manager* gameManager = enemy.GetManager();
+    gameManager->RemoveFoe();
     enemy.Kill();
 }

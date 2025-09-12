@@ -11,6 +11,8 @@ public:
 	Character();
 	virtual ~Character();
 
+	Manager* GetManager() { return gameManager; };
+
 	void Init(float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f);
 
 protected:

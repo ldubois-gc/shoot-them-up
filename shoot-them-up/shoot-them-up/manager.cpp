@@ -55,7 +55,13 @@ void Manager::RemoveFlaggedEntities() {
 		std::remove_if(
 			entities.begin(), 
 			entities.end(), 
-			[](Entity* e) { return !e->Exists(); }), 
+			[](Entity* e) { 
+				if (!e->Exists()) {
+					delete e; 
+					return true;      
+				}
+				return false;
+			}), 
 		entities.end()
 	);
 }
@@ -63,7 +69,6 @@ void Manager::RemoveFlaggedEntities() {
 void Manager::ClearEntities() {
 	for (Entity* entity : entities) {
 		entity->Kill();
-		delete entity;
 	}
 }
 
@@ -77,6 +82,7 @@ void Manager::CreateEnemy(float xPos, float yPos, float speed) {
 	Enemy* enemy = new Enemy();
 	enemy->Init(xPos, yPos, 15.f, 15.f, sf::Color::Yellow, this, player, speed);
 	AddEntity(enemy);
+	nFoes++;
 }
 
 void Manager::CreateProjectile(float xPos, float yPos, float xDir, float yDir, float bulletSpeed, Character* shooter) {
