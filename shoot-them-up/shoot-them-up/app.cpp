@@ -71,7 +71,7 @@ void App::Start() {
 	{
 		float randomXPos = (float)rand() / (float)RAND_MAX * 800;
 		float randomYPos = (float)rand() / (float)RAND_MAX * 800;
-		gameManager.CreateEnemy(randomXPos, randomYPos, 100.f);
+		gameManager.CreateEnemy(randomXPos, randomYPos, 80.f);
 	}
 
 	for (int i = 0; i < 100; i++)

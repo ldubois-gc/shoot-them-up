@@ -63,6 +63,7 @@ void Player::OnCollision(Entity* collidedEntity) {
     }
     if (((collidedEntity->Type() == EntityType::ENEMY || (collidedEntity->Type() == EntityType::PROJECTILE) && static_cast<Projectile*>(collidedEntity)->GetShooter() != this) && !invicible)) {
         invicible = true;
+        PushBack(collidedEntity);
         StateChange(&hasBeenHit);
         healthPoints -= 1;
     }
@@ -76,7 +77,7 @@ void Player::Movement(float& dt) {
     float currentSpeed = speed;
     if (invicible)
     {
-        currentSpeed *= 0.7f;
+        currentSpeed *= 1.2f;
     }
     dirX = 0.f;
     dirY = 0.f;
@@ -98,7 +99,7 @@ void Player::Movement(float& dt) {
         dirX -= 1.f;
     }
 
-    if (playerInput->IsKeyDown('E'))
+    if (playerInput->IsKeyDown('E') && !invicible)
     {
         stateMachine.ChangeState(&dashing);
     }
