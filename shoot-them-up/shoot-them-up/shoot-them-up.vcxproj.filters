@@ -66,6 +66,15 @@
     <ClInclude Include="projectile.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="enemy_state.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="obstacle.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="app_state.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shoot-them-up.cpp">
@@ -114,6 +123,15 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="player_state.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_state.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="obstacle.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="app_state.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

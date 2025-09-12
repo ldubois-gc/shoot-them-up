@@ -12,6 +12,7 @@ public:
 	Manager();
 	~Manager();
 
+	Player* GetPlayer() { return player; }
 	std::vector<Entity*>& GetEntities() { return entities; }
 	std::vector<Entity*>& GetNewEntities() { return newEntities; }
 	std::vector<Obstacle*>& GetObstacles() { return obstacles; }
@@ -19,6 +20,7 @@ public:
 
 	void AddEntity(Entity* newEntity);
 	void RemoveFlaggedEntities();
+	void ClearEntities();
 
 	void CreatePlayer(EventHandler* input, float xPos, float yPos);
 	void CreateEnemy(float xPos, float yPos, float speed);

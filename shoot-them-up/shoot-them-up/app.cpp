@@ -4,8 +4,9 @@
 #include "player.hpp"
 #include "enemy.hpp"
 #include "obstacle.hpp"
+#include "app_state.hpp"
 
-App::App() {
+App::App() : appMachine(*this) {
 	
 }
 
@@ -18,11 +19,12 @@ int App::Init() {
 	window->setFramerateLimit(60);
 
 	input.InitWindow(window);
+	appMachine.ChangeState(&game);
 	return 0;
 }
 
 int App::Runtime() {
-	Start();
+	//GameStart();
 	while (window->isOpen()) {
 		while (const std::optional event = window->pollEvent())
 		{
@@ -33,34 +35,25 @@ int App::Runtime() {
 		}
 
 		Sleep(1);
-		Update();
+		float deltaTime = timer.GetDeltaTime();
+		appMachine.Update(deltaTime);
 		Render();
 		gameManager.UpdateManager();
 	}
 	return 0;
 }
 
-void App::Update() {
+void App::GameUpdate(float& dt) {
 	timer.UpdateClock();
 	input.UpdateEvents();
-	float deltaTime = timer.GetDeltaTime();
 
 	for (Entity* entity : gameManager.GetEntities()) {
-		entity->Update(deltaTime);
+		entity->Update(dt);
 		gameManager.ProcessCollision(entity);
 	}
 }
 
-void App::Render() {
-	window->clear();
-
-	for (Entity* entity : gameManager.GetEntities()) {
-		entity->Draw(*window);
-	}
-	window->display();
-}
-
-void App::Start() {
+void App::GameStart() {
 	gameManager.CreatePlayer(&input, 400.f, 400.f);
 	gameManager.CreateObstacle(-100.f, 0.f, 100.f, 800.f);
 	gameManager.CreateObstacle(0.f, -100.f, 800.f, 100.f);
@@ -80,4 +73,28 @@ void App::Start() {
 		float randomYPos = (float)rand() / (float)RAND_MAX * 800;
 		gameManager.CreateObstacle(randomXPos, randomYPos, 20.f, 20.f);
 	}
+}
+
+void App::GameOverStart() {
+
+}
+
+void App::GameOverUpdate(float& dt) {
+	input.UpdateEvents();
+	if (input.IsKeyDown(VK_SPACE)) {
+		appMachine.ChangeState(&game);
+	}
+}
+
+void App::Render() {
+	window->clear();
+
+	for (Entity* entity : gameManager.GetEntities()) {
+		entity->Draw(*window);
+	}
+	window->display();
+}
+
+void App::StateChange(State<App>* newState) {
+	appMachine.ChangeState(newState);
 }

@@ -5,19 +5,6 @@
 #include "event_handler.hpp"
 #include "manager.hpp"
 
-//Player::Player(EventHandler* inputManager, float x, float y, float heigth, float width, sf::Color color, Manager* manager, float actorSpeed = 20.f) : Character(x, y, heigth, width, color, manager, actorSpeed), movement(), hasBeenHit(), stateMachine(*this) {
-//    playerInput = inputManager;
-//    xAim = 0.f;
-//    yAim = -1.f;
-//    shootCooldown = .16f;
-//    shootTimer = .16f;
-//    bleepCooldown = 0.3f;
-//    bleepTimer = 0.3f;
-//    stateMachine.ChangeState(&movement);
-//    correctionX = 0;
-//    correctionY = 0;
-//}
-
 Player::Player() : stateMachine(*this) {
 
 }
@@ -62,10 +49,10 @@ void Player::OnCollision(Entity* collidedEntity) {
         PushBack(collidedEntity);
     }
     if (((collidedEntity->Type() == EntityType::ENEMY || (collidedEntity->Type() == EntityType::PROJECTILE) && static_cast<Projectile*>(collidedEntity)->GetShooter() != this) && !invicible)) {
-        invicible = true;
         PushBack(collidedEntity);
-        StateChange(&hasBeenHit);
+        invicible = true;
         healthPoints -= 1;
+        StateChange(&hasBeenHit);
     }
 }
 
