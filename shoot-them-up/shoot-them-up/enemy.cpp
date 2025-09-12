@@ -1,13 +1,10 @@
 #include "framework.h"
 #include "enemy.hpp"
 #include "player.hpp"
+#include "obstacle.hpp"
+#include "manager.hpp"
 
-//Enemy::Enemy(float x, float y, float heigth, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed) : Character(x, y, heigth, width, color, manager, actorSpeed)
-//{
-//    player = gamePlayer;
-//}
-
-Enemy::Enemy() {
+Enemy::Enemy() : stateMachine(*this) {
 
 }
 
@@ -18,6 +15,8 @@ Enemy::~Enemy()
 void Enemy::Init(float x, float y, float height, float width, sf::Color color, Manager* manager, Player* gamePlayer, float actorSpeed) {
     Character::Init(x, y, height, width, color, manager, actorSpeed);
     player = gamePlayer;
+    stateMachine.ChangeState(&trackPlayer);
+    healthPoints = 10;
 }
 
 void Enemy::OnCollision(Entity* collidedEntity) {
@@ -26,17 +25,29 @@ void Enemy::OnCollision(Entity* collidedEntity) {
     }
     if (collidedEntity->Type() == EntityType::PROJECTILE) {
         // State hurt
+        StateChange(&enemyHit);
         healthPoints -= 1;
     }
 }
 
 void Enemy::Update(float& dt) {
-    sf::Vector2f direction = GetDirectionToPoint(player->GetX(), player->GetY());
+    if (healthPoints <= 0) {
+        StateChange(&killed);
+    }
+    stateMachine.Update(dt);
+}
+
+void Enemy::Movement(float& dt) {
+    playerDirection = GetDirectionToPoint(player->GetX(), player->GetY());
 
     float currentSpeed = speed;
 
-    float xMove = direction.x * currentSpeed * dt;
-    float yMove = direction.y * currentSpeed * dt;
+    float xMove = playerDirection.x * currentSpeed * dt;
+    float yMove = playerDirection.y * currentSpeed * dt;
 
     Move(xMove, yMove);
+}
+
+void Enemy::StateChange(State<Enemy>* newState) {
+    stateMachine.ChangeState(newState);
 }

@@ -22,7 +22,11 @@ void Projectile::Init(float x, float y, float height, float width, float xDir, f
 	xForward = xDir;
 	yForward = yDir;
 	shooter = newShooter;
-	body.setSize(sf::Vector2f(8.f, 8.f));
+	body.setSize(sf::Vector2f(height, width));
+	
+	float angleRad = std::atan2(yForward, xForward);
+	float angleDeg = angleRad * 180.f / 3.14159f;
+	body.setRotation(sf::degrees(angleDeg));
 }
 
 void Projectile::Update(float& dt) {
@@ -30,6 +34,7 @@ void Projectile::Update(float& dt) {
 }
 
 void Projectile::OnCollision(Entity* collidedEntity) {
+	//PushBack(collidedEntity);
 	if (shooter != collidedEntity) {
 		exists = false;
 	}
