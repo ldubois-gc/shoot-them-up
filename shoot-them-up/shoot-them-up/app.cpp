@@ -23,7 +23,6 @@ int App::Init() {
 
 int App::Runtime() {
 	Start();
-
 	while (window->isOpen()) {
 		while (const std::optional event = window->pollEvent())
 		{

@@ -61,7 +61,7 @@ void Player::OnCollision(Entity* collidedEntity) {
     if (collidedEntity->Type() == EntityType::OBSTACLE) {
         PushBack(collidedEntity);
     }
-    if ((collidedEntity->Type() == EntityType::ENEMY || (collidedEntity->Type() == EntityType::PROJECTILE) && static_cast<Projectile*>(collidedEntity)->GetShooter() != this && !invicible)) {
+    if (((collidedEntity->Type() == EntityType::ENEMY || (collidedEntity->Type() == EntityType::PROJECTILE) && static_cast<Projectile*>(collidedEntity)->GetShooter() != this) && !invicible)) {
         invicible = true;
         StateChange(&hasBeenHit);
         healthPoints -= 1;

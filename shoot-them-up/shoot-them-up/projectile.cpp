@@ -34,6 +34,7 @@ void Projectile::Update(float& dt) {
 }
 
 void Projectile::OnCollision(Entity* collidedEntity) {
+	//PushBack(collidedEntity);
 	if (shooter != collidedEntity) {
 		exists = false;
 	}
